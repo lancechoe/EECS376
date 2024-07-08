@@ -1,0 +1,312 @@
+\documentclass[11pt]{exam}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\newcommand{\hwnum}{1}
+\newcommand{\duedate}{Sept 6}
+\usepackage{xcolor}
+
+\hwheader   % header for homework
+%\hwslnheader   % header for homework solutions
+
+%Comment out this line to hid "Solution: ..." boxes.
+\printanswers
+
+\begin{document}
+
+\hwpreface
+
+\begin{enumerate}
+    \item[0.] If applicable, state the name(s) and uniqname(s) of your collaborator(s).
+    \begin{solution}
+
+    \end{solution}
+
+  \item \textbf{Extra credit:} {\it You do not have to do this question to receive full credit on this assignment.} To receive the bonus points, you must typeset this \textbf{entire} assignment in \LaTeX ~and draw a table with two columns
+    that includes the \emph{name} (e.g., ``fraction'')
+    and an \emph{example} of each of the following:
+		\begin{itemize}
+            \item fraction (using \texttt{\textbackslash frac})
+			\item less than or equal to
+			\item union of two sets
+			\item an expression involving a sum ($\sum$) and product ($\prod$).
+            \item write a quantified formula about the reals ($\R$) using both quantifiers ($\exists,\forall$).
+		\end{itemize}
+		Unlike most extra credit questions, we will help with this in office hours.
+		
+    \begin{solution}
+\begin{tabular}{r|cl}
+Name & Example\\
+\hline
+fraction & $\frac{2}{3}$ \\ \\
+less than or equal to & $\leq$ \\ \\
+union of two sets & $A \cup B$ \\ \\
+expression involving a sum $(\Sigma)$ and product $(\prod)$ &  $\sum_{i=1}^3 i = 6$ , $ \Pi_{i=1}^\infty a_i  $ \\ \\
+write a quantified formula about the reals ($\R$) \\ using both quantifiers ($\exists,\forall$) & $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, x + y = 0$\\ \\
+\end{tabular}
+    \end{solution}
+
+  \item 
+  Use induction to prove the following statements for all integers $n \geq 1$.
+  \begin{enumerate}
+      \item $\sum_{i=0}^n x^i = \frac{x^{n+1}-1}{x-1}$, for all $x \neq 1$.
+      \item The number of binary strings of length $n$ is $2^{n}$.
+      \item In any drawing of a planar graph $G$ having $v$ vertices, $e$ edges, $f$ faces, and $c$ connected components, $v+f-e-c=1$.  (A planar graph is one that can be drawn in the plane without crossing edges. A \emph{face} is a connected region of the plane after removing vertices and edges.
+      If you remove a vertex or edge from a planar graph, it is still planar. Below is a planar graph with $v=8,e=10,f=4,c=1$.)
+\medskip
+
+\centerline{\includegraphics[width=3in]{planar-graph.pdf}}
+  \end{enumerate}
+    
+    \begin{solution}      
+\\ (a) Base Case (n = 1): For $n = 1$, we have:
+\[
+\sum_{i=0}^{1} x^i = 1 + x = \frac{(x - 1)(x + 1)}{x-1}= \frac{x^2 - 1}{x - 1}
+\]
+This confirms the statement for the base case.\\
+\\ Inductive Step: Assume that the statement is true for some positive integer $k$, i.e.,
+\[
+\sum_{i=0}^{k} x^i = \frac{x^{k+1} - 1}{x - 1}
+\]
+Now, let's prove it for $k + 1$. Consider the left side:
+\[
+\sum_{i=0}^{k+1} x^i = \sum_{i=0}^{k} x^i + x^{k+1}
+\]
+Using the induction hypothesis:
+\[
+\sum_{i=0}^{k} x^i + x^{k+1} = \frac{x^{k+1} - 1}{x - 1} + x^{k+1}
+\]
+Simplify the right side:
+\[
+\frac{x^{k+1} - 1}{x - 1} + x^{k+1} = \frac{x^{k+1} - 1 + (x - 1)x^{k+1}}{x - 1}
+\]
+Now, factor out $x^{k+1}$:
+\[
+\frac{x^{k+1} - 1 + x^{k+2} - x^{k+1}}{x - 1}
+\]
+Cancel out terms $-x^{k+1}$ and $x^{k+1}$:
+\[
+\frac{x^{k+2} - 1}{x - 1}
+\]
+This is the same as the right side of the statement for $k + 1$. Therefore, we have shown that if the statement holds for $k$, it also holds for $k + 1$.
+\\By the principle of mathematical induction, the statement is proven for all integers $n \geq 1$.
+\\
+\\
+\\ (b)
+We want to prove that the number of binary strings of length $n$ is $2^n$.
+
+Base Case (n = 1):
+For $n = 1$, there are two possible binary strings: "0" and "1." So, the statement holds for the base case.
+
+Inductive Step:
+Assume that the statement is true for some positive integer $k$, i.e., there are $2^k$ binary strings of length $k$.
+
+Now, let's prove it for $k + 1$. A binary string of length $k + 1$ can be formed by appending either "0" or "1" to a binary string of length $k$. Since there are two choices for each of the $2^k$ binary strings of length $k$, there will be $2 \cdot 2^k = 2^{k+1}$ binary strings of length $k + 1$.
+
+Thus, the statement holds for $k + 1$.
+
+By the principle of mathematical induction, the number of binary strings of length $n$ is indeed $2^n$ for all integers $n \geq 1$.
+\\
+\\
+\\ (c)
+\textbf{Base Case (v = 1):}
+When \(v = 1\), there is one vertex and no edges, faces, or connected components. Therefore, \(v + f - e - c = 1\), which is true for the base case.
+
+\textbf{Inductive Step:}
+Assume that Euler's formula holds for planar graphs with \(v\) vertices. We will prove that it also holds for \(v + 1\) vertices.
+
+Consider a planar graph \(G\) with \(v + 1\) vertices. Remove one vertex and all edges incident to it. This results in a planar graph \(G'\) with \(v\) vertices, \(e'\) edges, \(f'\) faces, and \(c'\) connected components.
+
+By the induction hypothesis, Euler's formula holds for \(G'\):
+\[v + f' - e' - c' = 1\]
+
+Now, add back the removed vertex and its incident edges. This does not change the number of connected components or faces but adds one vertex and some edges to \(G\), resulting in a planar graph \(G\) with \(v + 1\) vertices, \(e\) edges, \(f'\) faces, and \(c'\) connected components.
+
+Now, we can use Euler's formula for \(G'\) and account for the changes:
+\[v + f' - e' - c' = 1\]
+\[v + f' - (e - \text{degree of the added vertex}) - c' = 1\]
+
+Since the degree of the added vertex is equal to the number of edges added, we can rewrite this as:
+\[v + f' - e + \text{degree of the added vertex} - c' = 1\]
+
+However, the degree of the added vertex is the number of edges incident to it, which is the same as the number of edges added back to \(G\). So, we have:
+\[v + f' - e + (\text{number of edges added}) - c' = 1\]
+
+Now, since we added back one vertex and some edges, the number of edges added is 1 more than the number of edges in \(G'\), which is \(e'\). Therefore, we can simplify further:
+\[v + f' - e + 1 - c' = 1\]
+
+Substituting Euler's formula for \(G'\) again, we get:
+\[1 + 1 = 2\]
+
+Hence, Euler's formula \(v + f - e - c = 1\) holds for the planar graph \(G\) with \(v + 1\) vertices.
+
+By mathematical induction, Euler's formula holds for all planar graphs with \(v\) vertices, completing the proof.
+
+
+    \end{solution}
+
+  \item A rational number may be written as $a/b$ for some integers $a,b$, where $b \neq 0$. Prove that $\sqrt{p}$ is not a rational number, for any prime $p$.\hint{Use a proof by contradiction.}
+
+    \begin{solution}
+
+Assume, for the sake of contradiction, that $\sqrt{p}$ is a rational number for some prime number $p$. This means that we can write $\sqrt{p}$ as a fraction $\frac{a}{b}$, where $a$ and $b$ are integers with no common factors (other than 1), and $b$ is not equal to 0.
+
+So, we have:
+
+\[
+\sqrt{p} = \frac{a}{b}
+\]
+
+Now, let's square both sides of this equation:
+
+\[
+p = \left(\frac{a}{b}\right)^2
+\]
+
+\[
+p = \frac{a^2}{b^2}
+\]
+
+Now, we can multiply both sides of the equation by $b^2$ to isolate $a^2$:
+
+\[
+p \cdot b^2 = a^2
+\]
+
+Since $a^2$ is an integer (because it's the square of an integer), and $p$ is a prime number, $p \cdot b^2$ is also an integer.
+
+Now, we have shown that $a^2$ is an integer multiple of $p$, which means that $a^2$ is divisible by $p$. This implies that $a$ is also divisible by $p$ because if it weren't, then $a^2$ wouldn't be divisible by $p$. Therefore, we can write $a$ as a multiple of $p$:
+
+\[
+a = k \cdot p
+\]
+
+Substituting this back into our equation:
+
+\[
+p \cdot b^2 = (k \cdot p)^2
+\]
+
+\[
+p \cdot b^2 = k^2 \cdot p^2
+\]
+
+Now, we can cancel out the common factor of $p$ on both sides of the equation:
+
+\[
+b^2 = k^2 \cdot p
+\]
+
+Now, we have shown that $b^2$ is an integer multiple of $p$, which means that $b^2$ is divisible by $p$. This implies that $b$ is also divisible by $p$ because if it weren't, then $b^2$ wouldn't be divisible by $p$. Therefore, we can write $b$ as a multiple of $p$:
+
+\[
+b = m \cdot p
+\]
+
+Now, we have expressed both $a$ and $b$ as multiples of $p$:
+
+\[
+a = k \cdot p
+\]
+\[
+b = m \cdot p
+\]
+
+However, we initially assumed that $a$ and $b$ had no common factors other than 1, but now we have shown that both $a$ and $b$ are divisible by $p$. This contradicts our initial assumption.
+
+Therefore, our assumption that $\sqrt{p}$ is a rational number must be false. $\sqrt{p}$ cannot be expressed as a fraction of two integers, and it is irrational for any prime number $p$.
+
+
+    \end{solution}
+
+  \item Recall that for positive functions $f(n),g(n)$, we say that $f(n) = O(g(n))$ if there exist constants $c, n_0 > 0$ such that $f(n) \leq c\cdot  g(n)$ for every $n \geq n_0$. Alternatively, a \emph{sufficient} condition is that $\lim_{n \to \infty} \frac{f(n)}{g(n)}$ is finite. (Note, however, that this condition is not \emph{necessary}; it is possible that $f(n)=O(g(n))$ even when the limit does not exist.)
+  
+  For the following pairs of $f(n)$ and $g(n)$, is it true that $f(n) = O(g(n))$? Justify your answer. \hint{You might find L'H\^{o}pital's Rule useful for some questions: it says that $\lim_{n \to \infty} \frac{f(n)}{g(n)} = \lim_{n \to \infty} \frac{f'(n)}{g'(n)}$ (when the latter limit exists), where $f'$ and $g'$ are the derivatives of $f$ and $g$, respectively.}
+  	\begin{enumerate}
+    
+	  \item $f(n) = n + \log_2(n ^ 4)$, $g(n) = \frac{1}{9} n + 5$.
+	  
+	    \begin{solution}
+$f'(n)=1+\frac{4}{nln(2)}$ and $g'(n) = \frac{1}{9}$. Using L'Hopital's rule,\\\
+$\lim_{n \to \infty} \frac{f'(n)}{g'(n)} = 0$, so, we can also say that $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$.\\\\
+Since $\lim_{n \to \infty} \frac{f(n)}{g(n)}$ is finite, it is true that $f(n) = O(g(n))$.
+    	\end{solution}
+
+	  \item 
+   $f(n) = (\ln n)^3$, $g(n) = 3^{\log_2 n}$
+	  
+	    \begin{solution}
+\(g(n) = 3^{\log_2(n)}\) is an exponential function with a base of 3 raised to the power of \(\log_2(n)\) and exponential functions grow faster than most polynomial functions, including \((\ln(n))^3\). Since we know that \(f(n)\) grows slower than \(g(n)\), we can choose \(C > 1\) and \(n_0 = 1\), and it will satisfy the condition for all \(n > 1\):
+\[
+f(n) \leq C \cdot g(n)
+\]
+
+So, \(f(n) = O(g(n))\) is true for the given functions.
+     	\end{solution}
+
+	  \item   $f(n) = 2^{1.3n}$, $g(n) = \frac{1}{2}e^n$
+	  
+	    \begin{solution}
+$\lim_{n \to \infty} \frac{f(n)}{g(n)} = \frac{2^{1.3n+1}}{e^n} = (\frac{2}{e})^n \cdot 2^{0.3n+1}$.
+Since $\frac{2}{e} < 1$, $\lim_{n \to \infty} (\frac{2}{e})^n = 0$.\\\\
+So, we can say that $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$. Since $\lim_{n \to \infty} \frac{f(n)}{g(n)}$ is finite, it is true that\\\\ $f(n) = O(g(n))$.
+        \end{solution}
+
+	  \item $f(n) = \log_2(n^{100})$, $g(n) = \log_2(n)$
+	  
+	    \begin{solution}
+	 $f(n)=\frac{100 \ln n }{\ln 2}$ and $g(n)=\frac{\ln n}{\ln 2}$. Since $\frac{f(n)}{g(n)}=100$, we can say that \\\\
+$\lim_{n \to \infty} \frac{f(n)}{g(n)} = 100$, which means that it is finite. Therefore, it is true that \\\\$f(n) = O(g(n))$.
+        \end{solution}
+
+        \item 
+        $f(n) = n^3$, $g(n) = \binom{n}{3}$.
+        \begin{solution}
+$g(n)=\frac{n!}{3! \cdot (n-3)!} = \frac{n(n-1)(n-2)}{3!} = \frac{n(n-1)(n-2)}{6}$. Therefore, $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 6$\\\\ which means that it is finite and this implies that it is true that $f(n) = O(g(n))$.
+        \end{solution}
+
+	\end{enumerate}
+   
+   \item Suppose you want to count the number of primes less than or equal to $t$.
+   You have a function $\text{is-prime}(i)$ that takes 1 time-step and returns true if $i$ is prime.
+   \begin{lstlisting}
+   function count-prime(t): // t >= 2 is a non-negative integer
+    count = 0
+    for i from t down to 2
+   	    if(is-prime(i))
+            count++
+    return count
+   \end{lstlisting} 
+
+    What is the running time of count-prime, as a function of its input size? (First determine what the input size is.)  Give an asymptotic upper bound (big-O) on its running time.  
+      
+    \begin{solution}
+The loop in this function iterates from t down to 2, checking each number using the is-prime(i) function. The is-prime(i) function takes constant time (1 time-step), and it's called for each number in the range. Therefore, the running time of count-prime(t) is proportional to the number of iterations in the loop.
+
+The loop runs for $t - 2 + 1$ times , so the running time is $O(t)$.
+    \end{solution}
+
+  \item Suppose you want to unambiguously represent all of the elements of $\set{0, 1, \ldots, n-1}$ as strings in $\Sigma^k$.  Here $\Sigma$ is a set of symbols (the \emph{alphabet})
+  and $\Sigma^k$ means the set of all strings over $\Sigma$ with length exactly $k$.
+    Given $|\Sigma|\geq 2$ and $n$, what is the smallest possible $k$ that allows this?
+    
+    \begin{solution}
+$|\Sigma|$ would be the number of symbols in the alphabet and $log_n(|\Sigma|)$ calculates the logarithm base n of the number of symbols in the alphabet $\Sigma$. 
+Therefore, 
+\[
+k = [log_n(|\Sigma|)] + 1 
+\]
+gives us the smallest value of $k$ required to unambiguously represent all elements of ${0, 1, ..., n-1}$ using strings of length $k$ over the alphabet $\Sigma$.
+    
+    \end{solution}
+
+\end{enumerate}
+
+\end{document}
